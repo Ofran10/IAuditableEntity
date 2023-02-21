@@ -1,7 +1,15 @@
-using FastDeliveryApi.Data;
 using Microsoft.EntityFrameworkCore;
 
+using FastDeliveryApi.Data;
+using FastDeliveryApi.Repositories;
+using FastDeliveryApi.Repositories.Interfaces;
+using FastDeliveryApi.Middleware;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("MyDbPgsql");
@@ -22,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 

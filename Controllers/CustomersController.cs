@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Mapster;
+
 using FastDeliveryApi.Data;
 using FastDeliveryApi.Entity;
+using FastDeliveryApi.Repositories.Interfaces;
+using FastDeliveryApi.Models;
+using FastDeliveryApi.Exeption;
 
 namespace FastDeliveryApi.Controllers;
 
@@ -8,54 +13,112 @@ namespace FastDeliveryApi.Controllers;
 [Route("api/customers")]
 public class CustomersController : ControllerBase
 {
-    private readonly FastDeliveryDbContext _context;
+    private readonly ICustomerRepository _customerRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public CustomersController(FastDeliveryDbContext context)
+    public CustomersController(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
     {
-        _context = context;
+        _customerRepository = customerRepository;
+        _unitOfWork = unitOfWork;
     }
-
     [HttpGet]
-    public ActionResult<IEnumerable<Customer>> Get()
+    public async Task<ActionResult<IEnumerable<Customer>>> Get()
     {
-        var customers = _context.Customers.ToList();
-        return Ok(customers);
-    }
-
-    [HttpGet("{id}")]
-    public ActionResult<IEnumerable<Customer>>  GetById(int id)
-    {
-        var customers = _context.Customers.Find(id);
+        var customers = await _customerRepository.GetAll();
         return Ok(customers);
     }
 
     [HttpPost]
-    public ActionResult<IEnumerable<Customer>>  Post(Customer customers)
+    public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerRequest request, CancellationToken cancellationToken)
     {
-        _context.Customers.Add(customers);
-        _context.SaveChanges();
-        return Created($"/id?id={customers.Id}", customers);
+        var customer = request.Adapt<Customer>();
+        
+        // var customer = new Customer(request.Name,
+        //     request.PhoneNumber,
+        //     request.Email,
+        //     request.Address
+        // );
+        
+        _customerRepository.Add(customer);
+
+        await _unitOfWork.SaveChangesAsync();
+
+        var response = customer.Adapt<CustomerResponse>();
+
+        return CreatedAtAction(
+            nameof(GetCustomerById),
+            new { id = response.Id },
+            response);
     }
 
-    [HttpPut]
-    public ActionResult<IEnumerable<Customer>>  Put(Customer customersToUpdate)
+    [HttpPut("{id:int}")]
+    public async Task<IActionResult> UpdateCustomer(int id, [FromBody] UpdateCustomerRequest request, CancellationToken cancellationToken)
     {
-        _context.Customers.Update(customersToUpdate);
-        _context.SaveChanges();
-         return Ok(customersToUpdate);
-    }
-
-    [HttpDelete("{id}")]
-    public ActionResult<IEnumerable<Customer>>  Delete(int id)
-    {
-        var customersToDelete = _context.Customers.Find(id);
-        if (customersToDelete == null)
+        if(request.Id != id)
         {
-            return NotFound();
+            throw new BadRequestException("Body Id is not equal than Url Id");
         }
-        _context.Customers.Remove(customersToDelete);
-        _context.SaveChanges();
-        return Ok(customersToDelete);
+
+        var customer = await _customerRepository.GetCustomerById(id);
+        if(customer is null)
+        {
+            throw new NotFoundException("Customer", id);
+        }
+
+        customer.ChangeName(request.Name);
+        customer.ChangePhoneNumber(request.PhoneNumber);
+        customer.ChangeEmail(request.Email);
+        customer.ChangeAddress(request.Address);
+        customer.ChangeStatus(request.Status);
+        
+        _customerRepository.Update(customer);
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return NoContent();
     }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult>  GetCustomerById(int id, CancellationToken cancellationToken)
+    {
+        var customer = await _customerRepository.GetCustomerById(id, cancellationToken);
+        if(customer is null)
+        {
+            throw new NotFoundException("Customer", id);
+        }
+
+        var response = customer.Adapt<CustomerResponse>();
+
+        return Ok(response);
+    }
+
+    [HttpDelete("{id:int}")]
+    public async Task<IActionResult> DeleteCustomer(int id, CancellationToken cancellationToken)
+    {
+        var customer = await _customerRepository.GetCustomerById(id);
+        if(customer is null)
+        {
+            return NotFound($"Customer Not Found With the Id {id}");
+        }
+        
+        _customerRepository.Delete(customer);
+
+        await _unitOfWork.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    // [HttpDelete("{id}")]
+    // public ActionResult<IEnumerable<Customer>>  Delete(int id)
+    // {
+    //     var customersToDelete = _context.Customers.Find(id);
+    //     if (customersToDelete == null)
+    //     {
+    //         return NotFound();
+    //     }
+    //     _context.Customers.Remove(customersToDelete);
+    //     _context.SaveChanges();
+    //     return NoContent();
+    // }
     
 }

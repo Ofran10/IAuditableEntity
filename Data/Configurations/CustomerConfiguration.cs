@@ -30,25 +30,25 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
                .IsRequired()
                .HasMaxLength(120);
 
-        builder.HasData(
-            new Customer
-            {
-                Id = 1,
-                Name = "Suleyma Lopez",
-                Email = "suleyma@univo.edu.sv",
-                Address = "San Miguel",
-                PhoneNumber = "0000-0000",
-                Status = true
-            },
-            new Customer
-            {
-                Id = 2,
-                Name = "Kevin Vasquez",
-                Email = "kvasquez@univo.edu.sv",
-                Address = "San Miguel",
-                PhoneNumber = "2200-5500",
-                Status = true
-            }
-        );
+        // builder.HasData(
+        //     new Customer
+        //     {
+        //         Id = 1,
+        //         Name = "Suleyma Lopez",
+        //         Email = "suleyma@univo.edu.sv",
+        //         Address = "San Miguel",
+        //         PhoneNumber = "0000-0000",
+        //         Status = true
+        //     },
+        //     new Customer
+        //     {
+        //         Id = 2,
+        //         Name = "Kevin Vasquez",
+        //         Email = "kvasquez@univo.edu.sv",
+        //         Address = "San Miguel",
+        //         PhoneNumber = "2200-5500",
+        //         Status = true
+        //     }
+        // );
     }
 }

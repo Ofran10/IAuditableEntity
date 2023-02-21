@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Porfirio\\Desktop\\TAREA\\FastDeliveryApi\\FastDeliveryApi.csproj": {}
+    "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\FastDeliveryApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Porfirio\\Desktop\\TAREA\\FastDeliveryApi\\FastDeliveryApi.csproj": {
+    "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\FastDeliveryApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Porfirio\\Desktop\\TAREA\\FastDeliveryApi\\FastDeliveryApi.csproj",
+        "projectUniqueName": "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\FastDeliveryApi.csproj",
         "projectName": "FastDeliveryApi",
-        "projectPath": "C:\\Users\\Porfirio\\Desktop\\TAREA\\FastDeliveryApi\\FastDeliveryApi.csproj",
+        "projectPath": "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\FastDeliveryApi.csproj",
         "packagesPath": "C:\\Users\\Porfirio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Porfirio\\Desktop\\TAREA\\FastDeliveryApi\\obj\\",
+        "outputPath": "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Porfirio\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -38,6 +38,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.3.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.2, )"
@@ -51,6 +55,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
