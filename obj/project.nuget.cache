@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "j6Gh652XNRCcLuqiA7bvdoJhSGTF6y+L8r1UMDFhFgcF003f4BG+IVZzmb5LspwovdT6AjxgiaThohrE4f9CCw==",
+  "dgSpecHash": "jzhBRTnbq6Av+7Ech5Bqa0Y0Z9rFArI+EYGSfE8t9TX9X6AoQL4V55b5QYowOVquHSvSouBrsNRc4MIb+zolmA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Porfirio\\Desktop\\Nueva carpeta\\IAuditableEntity\\FastDeliveryApi.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\Porfirio\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\Porfirio\\.nuget\\packages\\npgsql\\7.0.1\\npgsql.7.0.1.nupkg.sha512",
     "C:\\Users\\Porfirio\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\7.0.1\\npgsql.entityframeworkcore.postgresql.7.0.1.nupkg.sha512",
+    "C:\\Users\\Porfirio\\.nuget\\packages\\scrutor\\4.2.1\\scrutor.4.2.1.nupkg.sha512",
     "C:\\Users\\Porfirio\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\Porfirio\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\Porfirio\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

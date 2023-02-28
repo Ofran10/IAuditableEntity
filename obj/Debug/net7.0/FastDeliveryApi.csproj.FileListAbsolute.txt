@@ -87,3 +87,4 @@ C:\Users\Porfirio\Desktop\Nueva carpeta\IAuditableEntity\obj\Debug\net7.0\refint
 C:\Users\Porfirio\Desktop\Nueva carpeta\IAuditableEntity\obj\Debug\net7.0\FastDeliveryApi.pdb
 C:\Users\Porfirio\Desktop\Nueva carpeta\IAuditableEntity\obj\Debug\net7.0\FastDeliveryApi.genruntimeconfig.cache
 C:\Users\Porfirio\Desktop\Nueva carpeta\IAuditableEntity\obj\Debug\net7.0\ref\FastDeliveryApi.dll
+C:\Users\Porfirio\Desktop\Nueva carpeta\IAuditableEntity\bin\Debug\net7.0\Scrutor.dll
